@@ -14,7 +14,7 @@ function loadingAlert(timer){
     $(".loader").fadeIn(0, function() {
         $("#main").animate({
             opacity: "0"
-        }, 000);
+        }, 0);
     });
     
     setTimeout(function(){
