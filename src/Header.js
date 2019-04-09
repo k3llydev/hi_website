@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 
 class Header extends Component{
     render(){
+        // window.loadingAlert(3000)
+        // window.initDogma()
+
         return(
             <header>
                 {/* <!-- Nav button--> */}
@@ -32,4 +35,4 @@ class Header extends Component{
         );
     }
 }
-export default Header;
+export default Header

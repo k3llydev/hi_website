@@ -9,6 +9,25 @@ $(window).load(function() {
     });
 });
 
+
+function loadingAlert(timer){
+    $(".loader").fadeIn(0, function() {
+        $("#main").animate({
+            opacity: "0"
+        }, 000);
+    });
+    
+    setTimeout(function(){
+        $(".loader").fadeOut(500, function() {
+        $("#main").animate({
+            opacity: "1"
+        }, 500);
+        contanimshow();
+    });
+    },timer)
+    
+}
+
 $("body").append('<div class="l-line"><span></span></div>');
 // all functions ------------------
 function initDogma() {
