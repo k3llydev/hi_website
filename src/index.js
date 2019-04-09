@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import RouterConfig from './RouterConfig';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('main'));
+ReactDOM.render(<RouterConfig />, document.getElementById('main'));
 
 serviceWorker.unregister();

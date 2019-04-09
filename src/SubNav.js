@@ -133,7 +133,7 @@ class SubNav extends Component{
           {/*  Subnav  end*/}
         </li>
         <li className="subnav">
-          <a href="#">Portfolio single</a>
+          <a href="/">Portfolio single</a>
           {/*  Subnav  */}
           <ul>
             <li>
