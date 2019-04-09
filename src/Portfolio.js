@@ -1,8 +1,16 @@
 import React, {Component} from 'react'
 import Header from './Header'
 import SubNav from './SubNav'
+import Footer from './Footer/Footer'
+
+import {Link} from 'react-router-dom'
 
 class Portfolio extends Component{
+
+  componentDidMount(){
+    window.loadingAlert(3000)
+    window.initDogma()
+  }
 
     Project = (data = []) =>{
         return (
@@ -11,9 +19,9 @@ class Portfolio extends Component{
                     <div className="box-item">
                     <div className="wh-info-box">
                         <div className="wh-info-box-inner at">
-                        <a href="portfolio-single.html" className="ajax">
+                        <Link to={'/portfolio/project/'+data}>
                             Modern house
-                        </a>
+                        </Link>
                         <span className="folio-cat">Houses design</span>
                         </div>
                     </div>
@@ -32,7 +40,6 @@ class Portfolio extends Component{
     }
 
     render(){
-      window.initDogma()
         return(
             <div>
                 <Header />
@@ -48,28 +55,24 @@ class Portfolio extends Component{
         <div className="filter-holder filter-nvis-column">
           <div className="gallery-filters at">
             <button
-              href="#"
               className="gallery-filter gallery-filter-active"
               data-filter="*"
             >
               All
             </button>
             <button
-              href="#"
               className="gallery-filter "
               data-filter=".houses"
             >
               Houses
             </button>
             <button
-              href="#"
               className="gallery-filter"
               data-filter=".interior"
             >
               Interior
             </button>
             <button
-              href="#"
               className="gallery-filter"
               data-filter=".apartments"
             >
@@ -92,6 +95,7 @@ class Portfolio extends Component{
   </div>
   {/* Content holder  end */}
 </div>
+<Footer />
 </div>
 
         );
