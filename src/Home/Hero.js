@@ -17,18 +17,18 @@ class Hero extends React.Component{
     }
 
     componentDidMount(){
-        fetch(Configurations.API.projects())
-            .then(response => response.json())
-            .then(data => {
-                var a = data
-                var arrays = [], size = 3
-                while (a.length > 0)
-                    arrays.push(a.splice(0, size))
-                this.setState({
-                    projects: arrays
-                })
-            });
-            setInterval(this.updateSliderStatus(),100)
+        // fetch(Configurations.API.projects())
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         var a = data
+        //         var arrays = [], size = 3
+        //         while (a.length > 0)
+        //             arrays.push(a.splice(0, size))
+        //         this.setState({
+        //             projects: arrays
+        //         })
+        //     });
+        //     setInterval(this.updateSliderStatus(),100)
     }
 
     getRandomInt = (min, max) => {
