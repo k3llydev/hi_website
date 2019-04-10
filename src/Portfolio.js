@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Header from './Header'
 import SubNav from './SubNav'
-import Footer from './Footer/Footer'
+import Footer from './Footer'
 
 import {Link} from 'react-router-dom'
 
