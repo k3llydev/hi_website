@@ -14,21 +14,61 @@ class Hero extends React.Component{
                     true
             ]
         }
+        
     }
 
-    componentDidMount(){
+    componentWillMount(){
         fetch(Configurations.API.projects())
             .then(response => response.json())
             .then(data => {
-                var a = data
-                var arrays = [], size = 3
-                while (a.length > 0)
-                    arrays.push(a.splice(0, size))
-                this.setState({
-                    projects: arrays
-                })
+                    //EXTRACT IMAGES FROM MAIN DATA
+                    var images = [], final = [], size = ( Math.ceil(data.length/4) )
+                    for(var c=0;c<data.length;c++){
+                        images.push(data[c].path+data[c].images.home) //Extracted home images only
+                    }
+                    final = this.chunk_elements(images,size)
+                    let projectsFinalExport = final.map((bg)=>{
+                        return (
+                            <div key={Math.random()} className="hero-grid">
+                                    <div
+                                        className="hero-slider owl-carousel"
+                                        data-attime={3220}
+                                        data-rtlt={this.state.sliderStatus[1]}
+                                    >
+                                        <div className="item">
+                                                <div className="bg" style={{backgroundImage: `url(${bg[0]})`}} />
+                                        </div>
+                                        <div className="item">
+                                                <div className="bg" style={{backgroundImage: `url(${bg[1]})`}} />
+                                        </div>
+                                        <div className="item">
+                                                <div className="bg" style={{backgroundImage: `url(${bg[2]})`}} />
+                                        </div>
+                                    </div>
+                            </div>
+                        )
+                    })
+                    this.setState({projects: projectsFinalExport})
+                    console.log(this.state.projects)
             });
-            setInterval(this.updateSliderStatus(),100)
+    }
+
+    chunk_elements = (array, size) =>{
+        const chunked_arr = [];
+        for (let i = 0; i < array.length; i++) {
+          const last = chunked_arr[chunked_arr.length - 1];
+          if (!last || last.length === size) {
+            chunked_arr.push([array[i]]);
+          } else {
+            last.push(array[i]);
+          }
+        }
+        return chunked_arr;
+    }
+
+    componentDidMount(){
+        
+        this.updateSliderStatus()
     }
 
     getRandomInt = (min, max) => {
@@ -44,39 +84,21 @@ class Hero extends React.Component{
         })
     }
 
-    render(){
-        var JSX = []
-        for(var c=0;c<4;c++){
-                JSX.push(
-                    <div key={c} className="hero-grid">
-                        <div
-                            className="hero-slider  owl-carousel"
-                            data-attime={3220}
-                            data-rtlt={this.state.sliderStatus[c]}
-                        >
-                            <div className="item">
-                            <div
-                                className="bg"
-                                style={{ backgroundImage: "url(images/bg/27.jpg)" }}
-                            />
-                            </div>
-                            <div className="item">
-                            <div
-                                className="bg"
-                                style={{ backgroundImage: "url(images/bg/2.jpg)" }}
-                            />
-                            </div>
-                            <div className="item">
-                            <div
-                                className="bg"
-                                style={{ backgroundImage: "url(images/bg/3.jpg)" }}
-                            />
-                            </div>
-                        </div>
-                </div>
-                )
+    chunk_projects = (array, size) =>{
+        const chunked_arr = [];
+        for (let i = 0; i < array.length; i++) {
+          const last = chunked_arr[chunked_arr.length - 1];
+          if (!last || last.length === size) {
+            chunked_arr.push([array[i]]);
+          } else {
+            last.push(array[i]);
+          }
         }
-        return JSX
+        return chunked_arr;
+    }
+
+    render(){
+        return <div>{this.state.projects}</div>
     }
 }
 export default Hero

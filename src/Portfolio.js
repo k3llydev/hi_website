@@ -1,43 +1,52 @@
 import React, {Component} from 'react'
 import Header from './Header'
 import SubNav from './SubNav'
-import Footer from './Footer'
+import Footer from './Footer/Footer'
+import {Configurations} from './AppConfig'
 
 import {Link} from 'react-router-dom'
 
 class Portfolio extends Component{
+
+  constructor(){
+    super()
+    this.state = {
+      projects: []
+    }
+  }
 
   componentDidMount(){
     window.loadingAlert(3000)
     window.initDogma()
   }
 
-    Project = (data = []) =>{
-        return (
-            <div key={data} className="gallery-item houses apartments">
-                <div className="grid-item-holder">
-                    <div className="box-item">
-                    <div className="wh-info-box">
-                        <div className="wh-info-box-inner at">
-                        <Link to={'/portfolio/project/'+data}>
-                            Modern house
-                        </Link>
-                        <span className="folio-cat">Houses design</span>
-                        </div>
-                    </div>
-                    <img src="images/folio/thumbs/27.jpg" alt="Alt" />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    loadProjects = () =>{
-        var Projects = []
-        for(var c=0;c<4;c++)
-            Projects.push(this.Project(c))
-        return Projects
-    }
+  componentWillMount(){
+    fetch(Configurations.API.projects())
+            .then(response => response.json())
+            .then(result => {
+              let projectsToExport = result.map((data)=>{
+                return (
+                  <div key={data.id} className="gallery-item houses apartments">
+                                  <div className="grid-item-holder">
+                                    <div className="box-item">
+                                    <div className="wh-info-box">
+                                        <div className="wh-info-box-inner at">
+                                        <Link to={'/portfolio/project/'+data.id}>
+                                          {data.project.project}
+                                        </Link>
+                                        <span className="folio-cat">{data.project.address}</span>
+                                        </div>
+                                    </div>
+                                    <img src={data.path+data.images.home} alt={data.project.project} />
+                                    </div>
+                                </div>
+                            </div>
+                )
+              })
+              this.setState({projects: projectsToExport})
+              console.log(this.state.projects)
+            })
+  }
 
     render(){
         return(
@@ -82,11 +91,11 @@ class Portfolio extends Component{
         </div>
         {/* filters end */}
         {/*  filter-button*/}
-        <div className="filter-button vis-fc">Filter</div>
+        <div className="filter-button vis-fc">Buscar</div>
         {/*  filter-button end */}
         {/*  gallery-items */}
         <div className="gallery-items   hid-port-info" >
-            {this.loadProjects()}
+            {this.state.projects}
         </div>
         {/* end gallery items */}
       </section>
