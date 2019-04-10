@@ -2,9 +2,14 @@ import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import Hero from './Home/Hero'
 
+
 class WebsiteLoad extends Component{
+  componentDidMount(){
+    window.loadingAlert(0)
+    window.initDogma()
+  }
+  
     render(){
-      // window.initDogma()
         return(
             <div id="wrapper">
   {/*=============== content-holder ===============*/}
@@ -25,7 +30,7 @@ class WebsiteLoad extends Component{
             <h3>
               <img src="http://habitareinmobiliaria.com.mx/assets/img/logo-habitare-ok.png" alt="Habitare logo" />
             </h3>
-            <Link to="/portfolio" className="ajax btn anim-button trans-btn transition ">
+            <Link to={{ pathname: '/portfolio', state: 'flushDeal' }} className="btn anim-button trans-btn transition ">
               <span>Todos los desarrollos</span>
               <i className="fa fa-long-arrow-right" />
             </Link>
