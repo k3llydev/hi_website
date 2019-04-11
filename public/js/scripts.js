@@ -9,6 +9,31 @@ $(window).load(function() {
     });
 });
 
+function startProjectGallery(){
+    $(".galleryStart").val("true");
+}
+
+function startHomeSlider(){
+    alert("Starting home slider...");
+    var heroslides = $(".hero-slider");
+    heroslides.each(function(index) {
+        var auttime = eval($(this).data("attime"));
+        var rtlt = eval($(this).data("rtlt"));
+        $(this).owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: auttime,
+            autoplayHoverPause: false,
+            autoplaySpeed: 1600,
+            rtl: rtlt,
+            dots: false
+        });
+    });
+}
+//startHomeSlider();
+
 
 function loadingAlert(timer){
     $(".loader").fadeIn(0, function() {
@@ -136,22 +161,8 @@ function initDogma() {
     }
     d();
 // Owl carousel ------------------
-    var heroslides = $(".hero-slider");
-    heroslides.each(function(index) {
-        var auttime = eval($(this).data("attime"));
-        var rtlt = eval($(this).data("rtlt"));
-        $(this).owlCarousel({
-            items: 1,
-            loop: true,
-            margin: 0,
-            autoplay: true,
-            autoplayTimeout: auttime,
-            autoplayHoverPause: false,
-            autoplaySpeed: 1600,
-            rtl: rtlt,
-            dots: false
-        });
-    });
+
+    
     var sync1 = $(".synh-slider"), sync2 = $(".synh-wrap"), flag = false, duration = 300;
     sync1.owlCarousel({
         loop: false,
@@ -251,7 +262,14 @@ function initDogma() {
         autoplayHoverPause: false,
         autoplaySpeed: 3600
     });
+
+
+
+
     var gR = $(".gallery_horizontal"), w = $(window);
+
+
+
     function initGalleryhorizontal() {
         var a = $(window).height(), b = $("header").outerHeight(), c = $("footer").outerHeight(), d = $("#gallery_horizontal");
         d.find("img").css("height", a - b - c);
@@ -277,12 +295,18 @@ function initDogma() {
             }
         });
     }
+
     if (gR.length) {
-        initGalleryhorizontal();
+        //initGalleryhorizontal();
         w.on("resize.destroyhorizontal", function() {
             setTimeout(initGalleryhorizontal, 150);
         });
+
+        w.on("hashchange", function() {
+            setTimeout(initGalleryhorizontal, 0);
+        });
     }
+    
 	if (navigator.appVersion.indexOf("Win")!=-1) {
 		var timestamp_mousewheel = 0;
 		gR.on("mousewheel", ".owl-stage", function(a) {

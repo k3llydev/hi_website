@@ -18,15 +18,10 @@ class Hero extends React.Component{
     }
 
     componentWillMount(){
-        fetch(Configurations.API.projects())
+        fetch(Configurations.API.heroSlider())
             .then(response => response.json())
             .then(data => {
-                    //EXTRACT IMAGES FROM MAIN DATA
-                    var images = [], final = [], size = ( Math.ceil(data.length/4) )
-                    for(var c=0;c<data.length;c++){
-                        images.push(data[c].path+data[c].images.home) //Extracted home images only
-                    }
-                    final = this.chunk_elements(images,size)
+                let final = data
                     let projectsFinalExport = final.map((bg)=>{
                         return (
                             <div key={Math.random()} className="hero-grid">
@@ -67,8 +62,8 @@ class Hero extends React.Component{
     }
 
     componentDidMount(){
-        
         this.updateSliderStatus()
+        window.startHomeSlider()
     }
 
     getRandomInt = (min, max) => {
@@ -98,7 +93,7 @@ class Hero extends React.Component{
     }
 
     render(){
-        return <div>{this.state.projects}</div>
+        return <section>{this.state.projects}</section>
     }
 }
 export default Hero

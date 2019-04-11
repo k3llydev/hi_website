@@ -23,7 +23,7 @@ class WebsiteLoad extends Component{
       {/*full-height wrap */}
       <div className="full-height-wrap">
         <Hero />
-        <div className="overlay" />
+        {/* <div className="overlay" /> */}
         {/* enter-wrap */}
         <div className="enter-wrap-holder cent-holder wht-bg">
           <div className="enter-wrap">

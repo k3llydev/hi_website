@@ -11,12 +11,13 @@ class Portfolio extends Component{
   constructor(){
     super()
     this.state = {
-      projects: []
+      projects: [],
+      subNavProjects: []
     }
   }
 
   componentDidMount(){
-    window.loadingAlert(3000)
+    window.loadingAlert(1500)
     window.initDogma()
   }
 
@@ -24,6 +25,7 @@ class Portfolio extends Component{
     fetch(Configurations.API.projects())
             .then(response => response.json())
             .then(result => {
+              //Projects to display in DOM
               let projectsToExport = result.map((data)=>{
                 return (
                   <div key={data.id} className="gallery-item houses apartments">
@@ -43,8 +45,19 @@ class Portfolio extends Component{
                             </div>
                 )
               })
+              //Projects to display in left nav bar
+              let ProjectsForLeftNavBar = result.map((data)=>{
+                return(
+                  <li key={data.id}>
+                    <Link to={'/portfolio/project/'+data.id}>
+                     {data.project.project}
+                    </Link>
+                 </li>
+                )
+              })
+              this.setState({subNavProjects: ProjectsForLeftNavBar})
               this.setState({projects: projectsToExport})
-              console.log(this.state.projects)
+              //console.log(this.state.projects)
             })
   }
 
@@ -52,7 +65,7 @@ class Portfolio extends Component{
         return(
             <div>
                 <Header />
-                <SubNav />
+                <SubNav projects={this.state.subNavProjects} />
                 <div id="wrapper">
                 
   {/*=============== content-holder ===============*/}
