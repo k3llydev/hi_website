@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {Configurations} from '../AppConfig'
 
 class Hero extends React.Component{
@@ -21,13 +22,13 @@ class Hero extends React.Component{
         fetch(Configurations.API.heroSlider())
             .then(response => response.json())
             .then(data => {
-                    let projectsFinalExport = data.map((bg)=>{
+                    let projectsFinalExport = data.map((bg, index)=>{
                         return (
-                            <div key={Math.random()} className="hero-grid">
+                            <div key={index} className="hero-grid">
                                     <div
                                         className="hero-slider owl-carousel"
                                         data-attime={3220}
-                                        data-rtlt={this.state.sliderStatus[1]}
+                                        data-rtlt={this.state.sliderStatus[index]}
                                     >
                                         <div className="item">
                                                 <div className="bg" style={{backgroundImage: `url(${bg[0]})`}} />
@@ -43,6 +44,7 @@ class Hero extends React.Component{
                         )
                     })
                     this.setState({projects: projectsFinalExport})
+                    console.log(data)
                     console.log(this.state.projects)
             });
     }
@@ -61,8 +63,8 @@ class Hero extends React.Component{
     }
 
     componentDidMount(){
+        window.initDogma()
         this.updateSliderStatus()
-        window.startHomeSlider()
     }
 
     getRandomInt = (min, max) => {
@@ -92,7 +94,25 @@ class Hero extends React.Component{
     }
 
     render(){
-        return <section>{this.state.projects}</section>
+        return (
+            <div className="full-height-wrap">
+                {this.state.projects}
+                <div className="overlay" />
+                    {/* enter-wrap */}
+                    <div className="enter-wrap-holder cent-holder wht-bg">
+                    <div className="enter-wrap">
+                    <h3>
+                        <img src="http://habitareinmobiliaria.com.mx/assets/img/logo-habitare-ok.png" draggable="false" alt="Habitare logo" />
+                        </h3>
+                    <Link to={{ pathname: '/portfolio', state: 'flushDeal' }} className="btn anim-button trans-btn transition ">
+                        <span>Todos los desarrollos</span>
+                        <i className="fa fa-long-arrow-right" />
+                    </Link>
+                    </div>
+                </div>
+                    {/* enter-wrap end  */}
+            </div>
+        )
     }
 }
 export default Hero

@@ -9,30 +9,11 @@ $(window).load(function() {
     });
 });
 
-function startProjectGallery(){
-    $(".galleryStart").val("true");
-}
 
-function startHomeSlider(){
-    alert("Starting home slider...");
-    var heroslides = $(".hero-slider");
-    heroslides.each(function(index) {
-        var auttime = eval($(this).data("attime"));
-        var rtlt = eval($(this).data("rtlt"));
-        $(this).owlCarousel({
-            items: 1,
-            loop: true,
-            margin: 0,
-            autoplay: true,
-            autoplayTimeout: auttime,
-            autoplayHoverPause: false,
-            autoplaySpeed: 1600,
-            rtl: rtlt,
-            dots: false
-        });
-    });
-}
-//startHomeSlider();
+  
+
+        
+
 
 
 function loadingAlert(timer){
@@ -161,7 +142,22 @@ function initDogma() {
     }
     d();
 // Owl carousel ------------------
-
+        var heroslides = $(".hero-slider");
+        heroslides.each(function(index) {
+        var auttime = eval($(this).data("attime"));
+        var rtlt = eval($(this).data("rtlt"));
+        $(this).owlCarousel({
+            items: 1,
+            loop: true,
+            margin: 0,
+            autoplay: true,
+            autoplayTimeout: auttime,
+            autoplayHoverPause: false,
+            autoplaySpeed: 1600,
+            rtl: rtlt,
+            dots: false
+        });
+    });
     
     var sync1 = $(".synh-slider"), sync2 = $(".synh-wrap"), flag = false, duration = 300;
     sync1.owlCarousel({
