@@ -302,7 +302,7 @@ function initDogma() {
             setTimeout(initGalleryhorizontal, 150);
         });
 
-        w.on("hashchange", function() {
+        w.one("mousemove", function() {
             setTimeout(initGalleryhorizontal, 0);
         });
     }

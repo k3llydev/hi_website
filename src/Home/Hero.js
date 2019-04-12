@@ -21,8 +21,7 @@ class Hero extends React.Component{
         fetch(Configurations.API.heroSlider())
             .then(response => response.json())
             .then(data => {
-                let final = data
-                    let projectsFinalExport = final.map((bg)=>{
+                    let projectsFinalExport = data.map((bg)=>{
                         return (
                             <div key={Math.random()} className="hero-grid">
                                     <div

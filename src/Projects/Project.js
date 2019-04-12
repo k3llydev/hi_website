@@ -96,9 +96,9 @@ class Project extends Component{
     componentDidMount(){
         window.loadingAlert(500)
         window.initDogma()
-        setTimeout(function(){
-          window.history.replaceState(undefined, undefined, "#"+3)
-        },150)
+        // setTimeout(function(){
+        //   window.history.replaceState(undefined, undefined, "#"+3)
+        // },150)
       }
 
     render(){
