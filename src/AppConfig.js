@@ -9,6 +9,9 @@ export const Configurations = {
         },
         projectInfo: function(id){
             return this.url+"desarrollos.php?id="+id
+        },
+        zones: function(){
+            return this.url+"desarrollos.php?cdmx"
         }
     }
 };

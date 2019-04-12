@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Header from './Header'
 import SubNav from './SubNav'
 import Footer from './Footer/Footer'
+import CustomSearch from './CustomSearch'
 import {Configurations} from './AppConfig'
 
 import {Link} from 'react-router-dom'
@@ -73,39 +74,7 @@ class Portfolio extends Component{
     {/*  Content  */}
     <div className="content ">
       <section className="no-padding no-border">
-        {/* Filters*/}
-        <div className="filter-holder filter-nvis-column">
-          <div className="gallery-filters at">
-            <button
-              className="gallery-filter gallery-filter-active"
-              data-filter="*"
-            >
-              All
-            </button>
-            <button
-              className="gallery-filter "
-              data-filter=".houses"
-            >
-              Houses
-            </button>
-            <button
-              className="gallery-filter"
-              data-filter=".interior"
-            >
-              Interior
-            </button>
-            <button
-              className="gallery-filter"
-              data-filter=".apartments"
-            >
-              Apartments
-            </button>
-          </div>
-        </div>
-        {/* filters end */}
-        {/*  filter-button*/}
-        <div className="filter-button vis-fc">Buscar</div>
-        {/*  filter-button end */}
+        <CustomSearch />
         {/*  gallery-items */}
         <div className="gallery-items   hid-port-info" >
             {this.state.projects}
