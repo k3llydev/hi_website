@@ -26,3 +26,10 @@
     -moz-appearance: none;
     appearance: none;
 }
+
+
+.SearchFormButton{
+    padding: 5px 8px;
+    background: transparent;
+    border: 0px;
+}

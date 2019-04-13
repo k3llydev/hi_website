@@ -42,15 +42,15 @@ class CustomSearch extends Component{
             options = [...options, JSX ]
         }
 
-        // fetch(Configurations.API.zones())
-        // .then( response => response.json() )
-        // .then( (result) => {
-        //     let zones = result.map( (zone, index)=>{
-        //         return <option key={index} value={index}>{zone}</option>
-        //     })
-        //     this.setState({zoneOptions: zones})
-        //     console.log(zones)
-        // })
+        fetch(Configurations.API.zones())
+        .then( response => response.json() )
+        .then( (result) => {
+            let zones = result.map( (zone, index)=>{
+                return <option key={index} value={index}>{zone}</option>
+            })
+            this.setState({zoneOptions: zones})
+            console.log(zones)
+        })
 
 
         console.log(options)
@@ -62,16 +62,18 @@ class CustomSearch extends Component{
             <div>
         <div className="filter-holder filter-nvis-column">
         <div className="gallery-filters at">
-          <button
-            className="gallery-filter gallery-filter-active"
+          
+          <div className="SelectStyle">
+            <button
+            className="SearchFormButton"
             data-filter="*"
           >
-            Todo
+            VER TODO
           </button>
-          <br />
+        </div>
         <div className="SelectStyle">
             <label htmlFor="zone">Zona metropolitana:</label>
-            <select data-filter={".zone"} className="SearchFormItem">
+            <select name="zone" data-filter={".zone"} className="SearchFormItem">
                 <option>TODAS</option>
                 {this.state.zoneOptions}
             </select>

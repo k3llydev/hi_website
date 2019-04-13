@@ -1,6 +1,6 @@
 export const Configurations = {
     API: {
-        url: "http://192.168.64.2/hi-api/",
+        url: "http://api.habitareinmobiliaria.com.mx/",
         heroSlider: function(){
             return this.url+('desarrollos.php?hero_slider') //Api must return JSON string of 4 arrays made of all projects
         },
