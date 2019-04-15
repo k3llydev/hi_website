@@ -6,6 +6,7 @@
     "dependencies": "0.0.1",
     "express": "^4.16.4",
     "express-favicon": "^2.0.1",
+    "he": "^1.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",

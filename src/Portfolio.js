@@ -19,7 +19,6 @@ class Portfolio extends Component{
 
   componentDidMount(){
     window.loadingAlert(1500)
-    window.initDogma()
   }
 
   componentWillMount(){
@@ -57,7 +56,9 @@ class Portfolio extends Component{
                 )
               })
               this.setState({subNavProjects: ProjectsForLeftNavBar})
-              this.setState({projects: projectsToExport})
+              this.setState({projects: projectsToExport},function(){
+                window.initDogma()
+              })
               //console.log(this.state.projects)
             })
   }

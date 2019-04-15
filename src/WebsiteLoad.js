@@ -5,7 +5,7 @@ import SubNav from './SubNav'
 class WebsiteLoad extends Component{
   componentDidMount(){
     window.loadingAlert(0)
-    //window.initDogma()
+    window.initDogma()
   }
   
     render(){
@@ -30,7 +30,6 @@ class WebsiteLoad extends Component{
   </div>
   {/* Content holder  end */}
 </div>
-
         );
     }
 }

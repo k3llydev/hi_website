@@ -17,7 +17,7 @@ class Header extends Component{
                 {/* <!-- Nav button end --> */}
                 {/* <!-- Logo-->  */}
                 <div className="logo-holder">
-                    <Link to="/" ><img src="/images/logo.png" alt="" /></Link>
+                    <Link to="/" ><img src="http://vibocreando.com/habitare/habitareh.png" width="150px" alt="" /></Link>
                 </div>
                 {/* <!-- Logo  end-->  */}
                 {/* <!-- Header  title -->  */}
@@ -26,10 +26,10 @@ class Header extends Component{
                 </div>
                 {/* <!-- Header  title  end--> */}
                 {/* <!-- share --> */}
-                <div className="show-share isShare">
+                {/* <div className="show-share isShare">
                     <span>Share</span>
                     <i className="fa fa-chain-broken"></i>            
-                </div>
+                </div> */}
                 {/* <!-- share  end-->				 */}
             </header> 
         );

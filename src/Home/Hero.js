@@ -43,7 +43,9 @@ class Hero extends React.Component{
                             </div>
                         )
                     })
-                    this.setState({projects: projectsFinalExport})
+                    this.setState({projects: projectsFinalExport},function(){
+                        window.initDogma()
+                    })
                     console.log(data)
                     console.log(this.state.projects)
             });
@@ -63,7 +65,7 @@ class Hero extends React.Component{
     }
 
     componentDidMount(){
-        window.initDogma()
+        //window.initDogma()
         this.updateSliderStatus()
     }
 

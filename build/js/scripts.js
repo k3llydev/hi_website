@@ -10,11 +10,17 @@ $(window).load(function() {
 });
 
 
+  
+
+        
+
+
+
 function loadingAlert(timer){
     $(".loader").fadeIn(0, function() {
         $("#main").animate({
             opacity: "0"
-        }, 000);
+        }, 0);
     });
     
     setTimeout(function(){
@@ -136,8 +142,8 @@ function initDogma() {
     }
     d();
 // Owl carousel ------------------
-    var heroslides = $(".hero-slider");
-    heroslides.each(function(index) {
+        var heroslides = $(".hero-slider");
+        heroslides.each(function(index) {
         var auttime = eval($(this).data("attime"));
         var rtlt = eval($(this).data("rtlt"));
         $(this).owlCarousel({
@@ -152,6 +158,7 @@ function initDogma() {
             dots: false
         });
     });
+    
     var sync1 = $(".synh-slider"), sync2 = $(".synh-wrap"), flag = false, duration = 300;
     sync1.owlCarousel({
         loop: false,
@@ -251,7 +258,14 @@ function initDogma() {
         autoplayHoverPause: false,
         autoplaySpeed: 3600
     });
+
+
+
+
     var gR = $(".gallery_horizontal"), w = $(window);
+
+
+
     function initGalleryhorizontal() {
         var a = $(window).height(), b = $("header").outerHeight(), c = $("footer").outerHeight(), d = $("#gallery_horizontal");
         d.find("img").css("height", a - b - c);
@@ -277,12 +291,18 @@ function initDogma() {
             }
         });
     }
+
     if (gR.length) {
-        initGalleryhorizontal();
+        //initGalleryhorizontal();
         w.on("resize.destroyhorizontal", function() {
             setTimeout(initGalleryhorizontal, 150);
         });
+
+        w.one("mousemove", function() {
+            setTimeout(initGalleryhorizontal, 0);
+        });
     }
+    
 	if (navigator.appVersion.indexOf("Win")!=-1) {
 		var timestamp_mousewheel = 0;
 		gR.on("mousewheel", ".owl-stage", function(a) {

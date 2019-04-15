@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import Footer from '../Footer/Footer'
 import Header from '../Header'
 import SubNav from '../SubNav'
+import Details from './Details'
 import {Configurations} from '../AppConfig'
 
 class Project extends Component{
@@ -53,26 +54,10 @@ class Project extends Component{
                   <div className="separator" />
                   <div className="clearfix" />
                   <p>
-                    Descripción del projecto mencionado bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
+                    {project.project.address}
                   </p>
-                  <h4>Info</h4>
-                  <ul className="project-details">
-                    <li>
-                      <span>Date :</span> 26.05.2014{" "}
-                    </li>
-                    <li>
-                      <span>Client :</span> House Big{" "}
-                    </li>
-                    <li>
-                      <span>Status :</span> Completed{" "}
-                    </li>
-                    <li>
-                      <span>Location : </span>{" "}
-                      <a href="https://goo.gl/maps/UzN5m" target="_blank" rel="noopener noreferrer">
-                        Kharkiv Ukraine
-                      </a>
-                    </li>
-                  </ul>
+                  <h4>Características</h4>
+                  <Details features={project.project.features} />
                   <a
                     href="/"
                     className=" btn anim-button   trans-btn   transition  fl-l"
@@ -87,6 +72,9 @@ class Project extends Component{
               projectName: project.project.project,
               images: ImageGallery,
               topProjectInfo: TopInfo
+            },function(){
+              window.loadingAlert(500)
+              window.initDogma()
             })
           }
           
@@ -94,8 +82,6 @@ class Project extends Component{
     }
 
     componentDidMount(){
-        window.loadingAlert(500)
-        window.initDogma()
         // setTimeout(function(){
         //   window.history.replaceState(undefined, undefined, "#"+3)
         // },150)
