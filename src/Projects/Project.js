@@ -19,7 +19,7 @@ class Project extends Component{
 
     componentWillMount(){
       fetch(Configurations.API.projectInfo(this.state.projectID))
-        .then((result)=>{return result.json()})
+        .then((result)=>{return result.json() })
         .then((project)=>{
           if(project === "error"){
             alert("Error")

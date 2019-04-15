@@ -27,19 +27,19 @@
 /*-------------Import fonts ---------------------------------------*/
 @font-face {
 	font-family:'FuturaPT-Book';
-	src: url('../fonts/FuturaPT-Book_gdi.eot');
-	src: url('../fonts/FuturaPT-Book_gdid41d.eot?#iefix') format('embedded-opentype'),
+	src: url('../fonts/FuturaPTBook.otf') format("opentype");
+	/* src: url('../fonts/FuturaPT-Book_gdid41d.eot?#iefix') format('embedded-opentype'),
 		url('../fonts/FuturaPT-Book_gdi.woff') format('woff'),
 		url('../fonts/FuturaPT-Book_gdi.ttf') format('truetype'),
-		url('../fonts/FuturaPT-Book_gdi.svg#FuturaPT-Book') format('svg');
+		url('../fonts/FuturaPT-Book_gdi.svg#FuturaPT-Book') format('svg'); */
 }
 @font-face {
 	font-family:'futurastd-bold';
-	src: url('../fonts/futurastd-bold.eot');
-	src: url('../fonts/futurastd-boldd41d.eot?#iefix') format('embedded-opentype'),
+	src: url('../fonts/FuturaPTBold.otf') format("opentype");
+	/* src: url('../fonts/futurastd-boldd41d.eot?#iefix') format('embedded-opentype'),
 		url('../fonts/futurastd-bold.woff') format('woff'),
 		url('../fonts/futurastd-bold.ttf') format('truetype'),
-		url('../fonts/futurastd-bold.svg#FuturaPT-Book') format('svg');
+		url('../fonts/futurastd-bold.svg#FuturaPT-Book') format('svg'); */
 }
 /*-------------General Style---------------------------------------*/
 html{

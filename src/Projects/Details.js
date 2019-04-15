@@ -12,7 +12,7 @@ class Details extends Component{
         const {features} = this.props
         let exploded = features.split(',')
         let JSX = exploded.map((f,index)=>{
-            return <li key={index} dangerouslySetInnerHTML={{ __html: f }}></li>
+            return <li key={index}>{f}</li>
         })
         this.setState({
             details: JSX

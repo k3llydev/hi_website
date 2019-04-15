@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 
 class Footer extends Component{
     render(){
@@ -10,11 +9,9 @@ class Footer extends Component{
                 </div>
                 <div className="footer-social">
                     <ul>
-                        <li><Link to="/"><i className="fa fa-facebook"></i><span>facebook</span></Link></li>
-                        <li><Link to="/"><i className="fa fa-twitter"></i><span>twitter</span></Link></li>
-                        <li><Link to="/"><i className="fa fa-instagram"></i><span>instagram</span></Link></li>
-                        <li><Link to="/"><i className="fa fa-pinterest"></i><span>pinterest</span></Link></li>
-                        <li><Link to="/"><i className="fa fa-tumblr"></i><span>tumblr</span></Link></li>
+                        <li><a href="https://www.facebook.com/HabitareInmobiliariaMX/" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook"></i><span>facebook</span></a></li>
+                        <li><a href="https://twitter.com/Habitare_In" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i><span>twitter</span></a></li>
+                        <li><a href="https://www.instagram.com/habitare_in/" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram"></i><span>instagram</span></a></li>
                     </ul>
                 </div>
             </footer>
