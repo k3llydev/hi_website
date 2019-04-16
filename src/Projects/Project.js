@@ -3,7 +3,10 @@ import Footer from '../Footer/Footer'
 import Header from '../Header'
 import SubNav from '../SubNav'
 import Details from './Details'
+import {Link} from 'react-router-dom'
 import {Configurations} from '../AppConfig'
+
+
 
 class Project extends Component{
 
@@ -56,16 +59,13 @@ class Project extends Component{
                   <p>
                     {project.project.address}
                   </p>
+                  <span className="project-status">{project.project.status}</span>
                   <h4>Características</h4>
-                  <Details features={project.project.features} />
-                  <a
-                    href="/"
-                    className=" btn anim-button   trans-btn   transition  fl-l"
-                    target="_blank"
-                  >
-                    <span>Ver en mapa</span>
+                  <Details price={project.project.price} features={project.project.features} />
+                  <Link className=" btn anim-button   trans-btn   transition  fl-l" to={"/contact/?project="+project.id}> 
+                    <span>Informes</span>
                     <i className="fa fa-eye" />
-                  </a>
+                  </Link>
                   </div>
             )
             this.setState({

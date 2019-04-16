@@ -12,6 +12,9 @@ export const Configurations = {
         },
         zones: function(){
             return this.url+"desarrollos.php?cdmx"
+        },
+        contact: function(){
+            return this.url+"contacto.php"
         }
     }
 };

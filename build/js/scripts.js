@@ -361,13 +361,13 @@ function initDogma() {
  if ($(window).width() < 1086){
  $("#wrapper").getNiceScroll().remove();
 }
-// Map  ------------------
+// Map  ------------------ //19.3177682,-99.2092814
     $("#map-canvas").gmap3({
         action: "init",
         marker: {
             values: [ {
-                latLng: [ 40.7143528, -74.0059731 ],
-                data: "Our office  - New York City",
+                latLng: [ 19.3177682, -99.2092814 ],
+                data: "Oficinas de habitare inmobiliaria.",
                 options: {
                     icon: "images/marker.png"
                 }

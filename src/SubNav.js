@@ -1,7 +1,30 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {Configurations} from './AppConfig'
+
 
 class SubNav extends Component{
+
+  constructor(){
+    super()
+    this.state = {
+      projects: []
+    }
+  }
+
+  componentWillMount(){
+    fetch(Configurations.API.projects())
+      .then(result=>{return result.json()})
+      .then(projects=>{
+        let Options = projects.map((p,index)=>{
+          return <li key={index}><Link to={"/portfolio/project/"+p.id}>{p.project.project}</Link></li>
+        })
+        this.setState({
+          projects: Options
+        })
+      })
+  }
+
   //add subnav class to elements with an <ul> inside them to make a sub list.
     render(){
         return(
@@ -17,19 +40,19 @@ class SubNav extends Component{
           </Link>
         </li>
         <li className="subnav">
-          <a href="/portfolio">
+          <Link to="/portfolio">
             Desarrollos
-          </a>
+          </Link>
           {/*  Subnav  */}
           <ul>
-           {this.props.projects}
+           {this.state.projects}
           </ul>
           {/*  Subnav  end*/}
         </li>
         <li>
-          <a href="/contact" className="ajax">
+          <Link to="/contact">
             Contacto
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

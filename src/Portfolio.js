@@ -4,21 +4,26 @@ import SubNav from './SubNav'
 import Footer from './Footer/Footer'
 import CustomSearch from './CustomSearch'
 import {Configurations} from './AppConfig'
+import PortfolioItem from './Portfolio/PortfolioItem'
 
-import {Link} from 'react-router-dom'
+
 
 class Portfolio extends Component{
 
   constructor(){
     super()
     this.state = {
+      showedProjectsData: [],
       projects: [],
-      subNavProjects: []
+      allProjects: []
     }
   }
 
   componentDidMount(){
     window.loadingAlert(1500)
+    this.setState(prevState=>({
+      showedProjectsData: prevState.allProjects
+    }))
   }
 
   componentWillMount(){
@@ -27,35 +32,9 @@ class Portfolio extends Component{
             .then(result => {
               //Projects to display in DOM
               let projectsToExport = result.map((data)=>{
-                return (
-                  <div key={data.id} className="gallery-item houses apartments">
-                                  <div className="grid-item-holder">
-                                    <div className="box-item">
-                                    <div className="wh-info-box">
-                                        <div className="wh-info-box-inner at">
-                                        <Link to={'/portfolio/project/'+data.id}>
-                                          {data.project.project}
-                                        </Link>
-                                        <span className="folio-cat">{data.project.address}</span>
-                                        </div>
-                                    </div>
-                                    <img src={data.path+data.images.home} alt={data.project.project} />
-                                    </div>
-                                </div>
-                            </div>
-                )
+                return <PortfolioItem data={data} />
               })
-              //Projects to display in left nav bar
-              let ProjectsForLeftNavBar = result.map((data)=>{
-                return(
-                  <li key={data.id}>
-                    <Link to={'/portfolio/project/'+data.id}>
-                     {data.project.project}
-                    </Link>
-                 </li>
-                )
-              })
-              this.setState({subNavProjects: ProjectsForLeftNavBar})
+              this.setState({allProjects: result})
               this.setState({projects: projectsToExport},function(){
                 window.initDogma()
               })
@@ -63,19 +42,77 @@ class Portfolio extends Component{
             })
   }
 
-    render(){
+
+  handleZoneFilter = (filter) =>{
+    const {allProjects} = this.state
+    this.setState({
+      projects: []
+    })
+    if( filter === "TODAS" ){
+      let filtered = allProjects.map(p=>{//Showed projects JSX
+        return <PortfolioItem data={p} />
+      })
+
+      this.setState({
+        projects: filtered
+      })
+
+
+    }else{
+      let filtered = allProjects.map((p)=>{//Projects in JSX rendered
+        let projectAddress = p.project.address.toLowerCase()
+        if( projectAddress.indexOf( filter.toLowerCase() ) >= 0 ){
+          return <PortfolioItem data={p} />
+        }
+        return ""
+      })
+
+      this.setState({
+        projects: filtered,
+      })
+    }
+    
+  }
+
+
+  handlePriceFilter = (filter) =>{
+    const {allProjects} = this.state
+    if( filter === "TODOS" ){
+      let filtered = allProjects.map(p=>{
+        return <PortfolioItem data={p} />
+      })
+      this.setState({
+        projects: filtered
+      })
+    }else{
+      let Range = [ (filter*1000000), ((filter+1)*1000000) ]
+      this.setState({ //Clear all projects listed already
+        projects: []
+      })
+      let filtered = allProjects.map(p=>{
+        let ProjectPrice = p.project.price
+        if( ProjectPrice>= Range[0] && ProjectPrice<=Range[1] ){
+          return <PortfolioItem data={p} />
+        }
+      })
+      this.setState({
+        projects: filtered
+      })
+    }
+  }
+
+  render(){
         return(
             <div>
                 <Header />
-                <SubNav projects={this.state.subNavProjects} />
+                <SubNav />
                 <div id="wrapper">
-                
   {/*=============== content-holder ===============*/}
   <div className="content-holder elem scale-bg2 transition3">
     {/*  Content  */}
     <div className="content ">
       <section className="no-padding no-border">
-        <CustomSearch />
+        <CustomSearch zoneFilter={this.handleZoneFilter} priceFilter={this.handlePriceFilter} />
         {/*  gallery-items */}
         <div className="gallery-items   hid-port-info" >
             {this.state.projects}

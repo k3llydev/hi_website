@@ -41,6 +41,14 @@
 		url('../fonts/futurastd-bold.ttf') format('truetype'),
 		url('../fonts/futurastd-bold.svg#FuturaPT-Book') format('svg'); */
 }
+@font-face {
+	font-family:'FuturaPT-Light';
+	src: url('../fonts/FuturaPTLight.otf') format("opentype");
+	/* src: url('../fonts/FuturaPT-Book_gdid41d.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/FuturaPT-Book_gdi.woff') format('woff'),
+		url('../fonts/FuturaPT-Book_gdi.ttf') format('truetype'),
+		url('../fonts/FuturaPT-Book_gdi.svg#FuturaPT-Book') format('svg'); */
+}
 /*-------------General Style---------------------------------------*/
 html{
 	overflow-x:hidden !important;

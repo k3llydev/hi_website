@@ -57,6 +57,26 @@ class CustomSearch extends Component{
         this.setState({rangeOptions: options})
     }
 
+    handleZoneFilter = (e) =>{
+        e.preventDefault()
+        let newValue = e.target.options[e.target.selectedIndex].text
+        this.props.zoneFilter(newValue)
+        // alert("Now filtering zone by "+newValue)
+    } 
+
+    handlePriceFilter = (e) =>{
+        e.preventDefault()
+        let newValue = e.target.value
+        this.props.priceFilter(newValue)
+    }
+
+    handleViewAll = () =>{
+        document.getElementById("ZoneFilter").selectedIndex="*"
+        document.getElementById("PriceFilter").selectedIndex="*"
+        this.props.priceFilter("TODOS")
+        this.props.zoneFilter("TODAS")
+    }
+
     render(){
         return(
             <div>
@@ -66,22 +86,22 @@ class CustomSearch extends Component{
           <div className="SelectStyle">
             <button
             className="SearchFormButton"
-            data-filter="*"
+            onClick={this.handleViewAll}
           >
             VER TODO
           </button>
         </div>
         <div className="SelectStyle">
             <label htmlFor="zone">Zona metropolitana:</label>
-            <select name="zone" data-filter={".zone"} className="SearchFormItem">
-                <option>TODAS</option>
+            <select name="zone" data-filter={".zone"} id="ZoneFilter" className="SearchFormItem" onChange={this.handleZoneFilter}>
+                <option value="*">TODAS</option>
                 {this.state.zoneOptions}
             </select>
         </div>
         <div className="SelectStyle">
             <label htmlFor="price">Rango de precio:</label>
-            <select name="price" data-filter={".price"} className="SearchFormItem">
-                <option>TODOS</option>
+            <select name="price" data-filter={".price"} id="PriceFilter" className="SearchFormItem" onChange={this.handlePriceFilter}>
+                <option value="*">TODOS</option>
                 {
                     this.state.rangeOptions
                 }

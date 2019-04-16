@@ -104,8 +104,9 @@ class Hero extends React.Component{
                     <div className="enter-wrap-holder cent-holder wht-bg">
                     <div className="enter-wrap">
                     <h3>
-                        <img src="http://habitareinmobiliaria.com.mx/assets/img/logo-habitare-ok.png" draggable="false" alt="Habitare logo" />
-                        </h3>
+                        <img src="http://habitareinmobiliaria.com.mx/assets/img/logo-habitare-ok.png" draggable="false" alt="Habitare logo" /><br />
+                        <span className="eslogan">DISEÑO-CALIDAD-VANGUARDIA</span>
+                    </h3>
                     <Link to={{ pathname: '/portfolio', state: 'flushDeal' }} className="btn anim-button trans-btn transition ">
                         <span>Todos los desarrollos</span>
                         <i className="fa fa-long-arrow-right" />
