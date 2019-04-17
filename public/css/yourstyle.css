@@ -45,3 +45,17 @@ Add your styles here
     appearance: none;
 }
 
+.goBackBtn{
+    position: absolute;
+	padding: 4px 5px 3px 5px;
+	line-height: 1;
+	font-weight: bold;
+	font-size: 11px;
+	text-transform: uppercase;
+	color:#fff;
+	border:2px solid #3e4127;
+	background:#717647;
+    letter-spacing:1px;
+    margin-left: -150px;
+    margin-top: -110px;
+}

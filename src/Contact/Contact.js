@@ -17,10 +17,12 @@ class Contact extends Component{
     }
 
     componentDidMount(){
-        
         this.setState({
             projectInfo: queryString.parse(this.props.location.search).project
         },function(){
+          if( typeof queryString.parse(this.props.location.search).project != "undefined" ){
+            document.getElementsByClassName("contact-form-holder")[0].classList.add("visform")
+          }
             window.initDogma()
         })
         console.log(this.state.projectInfo)

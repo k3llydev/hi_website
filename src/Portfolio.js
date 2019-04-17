@@ -14,16 +14,17 @@ class Portfolio extends Component{
     super()
     this.state = {
       showedProjectsData: [],
+      showedZone: [],
+      showedPrice: [],
       projects: [],
-      allProjects: []
+      allProjects: [],
+      zoneFiltered: false,
+      priceFiltered: false
     }
   }
 
   componentDidMount(){
     window.loadingAlert(1500)
-    this.setState(prevState=>({
-      showedProjectsData: prevState.allProjects
-    }))
   }
 
   componentWillMount(){
@@ -34,7 +35,7 @@ class Portfolio extends Component{
               let projectsToExport = result.map((data)=>{
                 return <PortfolioItem data={data} />
               })
-              this.setState({allProjects: result})
+              this.setState({allProjects: result, showedProjectsData: result})
               this.setState({projects: projectsToExport},function(){
                 window.initDogma()
               })
@@ -42,63 +43,99 @@ class Portfolio extends Component{
             })
   }
 
+  filter_array = (test_array) =>{
+    var index = -1,
+        arr_length = test_array ? test_array.length : 0,
+        resIndex = -1,
+        result = [];
 
-  handleZoneFilter = (filter) =>{
-    const {allProjects} = this.state
-    this.setState({
-      projects: []
-    })
-    if( filter === "TODAS" ){
-      let filtered = allProjects.map(p=>{//Showed projects JSX
-        return <PortfolioItem data={p} />
-      })
+    while (++index < arr_length) {
+        var value = test_array[index];
 
-      this.setState({
-        projects: filtered
-      })
-
-
-    }else{
-      let filtered = allProjects.map((p)=>{//Projects in JSX rendered
-        let projectAddress = p.project.address.toLowerCase()
-        if( projectAddress.indexOf( filter.toLowerCase() ) >= 0 ){
-          return <PortfolioItem data={p} />
+        if (value) {
+            result[++resIndex] = value;
         }
-        return ""
-      })
-
-      this.setState({
-        projects: filtered,
-      })
     }
-    
+
+    return result;
+}
+
+  generateOutput = (obj) =>{
+    let filtered = obj.map(element=>{
+      return (element!==null ? <PortfolioItem data={element} /> : null)
+    })
+    this.setState({
+      showedProjectsData: [],
+      projects: []
+    },function(){this.setState({projects:filtered,showedProjectsData:obj})})
   }
 
 
-  handlePriceFilter = (filter) =>{
+  handleZoneFilter = (filter) =>{
     const {allProjects} = this.state
+      if( filter === "TODAS" ){
+        this.setState({
+          zoneFiltered: false,
+          showedProjectsData: allProjects
+        },function(){this.generateOutput(allProjects)})
+      }else{
+
+        
+      }
+  }
+
+  handlePriceFilter = (filter) =>{
+    const {allProjects, zoneFiltered, priceFiltered} = this.state
     if( filter === "TODOS" ){
-      let filtered = allProjects.map(p=>{
-        return <PortfolioItem data={p} />
-      })
       this.setState({
-        projects: filtered
-      })
+        priceFiltered: false,
+        showedProjectsData: allProjects
+      },function(){this.generateOutput(allProjects)})
     }else{
-      let Range = [ (filter*1000000), ((filter+1)*1000000) ]
-      this.setState({ //Clear all projects listed already
-        projects: []
-      })
-      let filtered = allProjects.map(p=>{
-        let ProjectPrice = p.project.price
-        if( ProjectPrice>= Range[0] && ProjectPrice<=Range[1] ){
-          return <PortfolioItem data={p} />
-        }
-      })
       this.setState({
-        projects: filtered
+        priceFiltered: true
+      },function(){
+        this.projectFiltering(null,filter)
       })
     }
+  }
+
+  projectFiltering = (zFilter, pFilter) =>{
+    const {zoneFiltered, priceFiltered, allProjects} = this.state
+    let filtered = allProjects
+    
+
+    if(zFilter !== null){//ZONE FILTERING
+      filtered = filtered.map((p)=>{
+        let projectAddress = p.project.address.toLowerCase()
+          return ( projectAddress.indexOf( zFilter.toLowerCase() ) >= 0 ? p : null )
+      })
+    }else{
+      zFilter = allProjects 
+    }//END ZONE FILTER
+    
+
+    // if(priceFiltered){//PRICE FILTERING
+    //   let million = Number(filter)
+    //   let Range = [ (million*1000000), ((million+1)*1000000) ]
+    //   prices = allProjects.map(p=>{
+    //     let ProjectPrice = p.project.price
+    //     return ( (ProjectPrice >= Range[0] && ProjectPrice <= Range[1]) ? p : null )
+    //   })
+    // }//END PRICE FILTERED
+
+    // //MIXING ZONES AND PRICES
+    // filtered = [zones, prices]
+    // filtered = filtered.filter(function (el) {
+    //   return el != null;
+    // });
+
+    //SETTING UP STATE
+    this.setState({
+      zoneFiltered: true,
+      showedProjectsData: filtered
+    },function(){this.generateOutput(filtered)})
+
   }
 
   render(){
@@ -112,7 +149,7 @@ class Portfolio extends Component{
     {/*  Content  */}
     <div className="content ">
       <section className="no-padding no-border">
-        <CustomSearch zoneFilter={this.handleZoneFilter} priceFilter={this.handlePriceFilter} />
+        {/* <CustomSearch zoneFilter={this.handleZoneFilter} priceFilter={this.handlePriceFilter} /> */}
         {/*  gallery-items */}
         <div className="gallery-items   hid-port-info" >
             {this.state.projects}

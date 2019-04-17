@@ -5,7 +5,7 @@ class Footer extends Component{
         return(
             <footer>
                 <div className="policy-box">
-                    <span>&#169; Habitare Inmobiliaria {new Date().getFullYear()}  /  Derechos reservados. </span>
+                    <span>&#169; HABITARE INMOBILIARIA {new Date().getFullYear()} Todos los derechos reservados.</span>
                 </div>
                 <div className="footer-social">
                     <ul>

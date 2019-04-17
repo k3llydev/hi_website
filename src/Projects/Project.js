@@ -53,6 +53,7 @@ class Project extends Component{
             })
             let TopInfo = (
               <div className="fixed-info-container">
+              <Link to="/portfolio"><button className="goBackBtn">Desarrollos</button></Link>
                 <h3>{project.project.project}</h3>
                   <div className="separator" />
                   <div className="clearfix" />
