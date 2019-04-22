@@ -45,7 +45,7 @@ class CustomSearch extends Component{
         fetch(Configurations.API.zones())
         .then( response => response.json() )
         .then( (result) => {
-            let zones = result.map( (zone, index)=>{
+            let zones = result.map( (zone, index) =>{
                 return <option key={index} value={index}>{zone}</option>
             })
             this.setState({zoneOptions: zones})

@@ -17,7 +17,7 @@ class SubNav extends Component{
       .then(result=>{return result.json()})
       .then(projects=>{
         let Options = projects.map((p,index)=>{
-          return <li key={index}><Link to={"/portfolio/project/"+p.id}>{p.project.project}</Link></li>
+          return <Link key={index} className="li-like-a" to={"/portfolio/project/"+p.id}><li >{p.project.project}</li></Link>
         })
         this.setState({
           projects: Options

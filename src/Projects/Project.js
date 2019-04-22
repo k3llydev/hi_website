@@ -86,6 +86,9 @@ class Project extends Component{
         // setTimeout(function(){
         //   window.history.replaceState(undefined, undefined, "#"+3)
         // },150)
+        window.onhashchange = function(){
+          alert('Url changed!!')
+        }
       }
 
     render(){

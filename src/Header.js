@@ -17,12 +17,12 @@ class Header extends Component{
                 {/* <!-- Nav button end --> */}
                 {/* <!-- Logo-->  */}
                 <div className="logo-holder">
-                    <Link to="/" ><img src="http://vibocreando.com/habitare/habitareh.png" width="150px" alt="" /></Link>
+                    <Link to="/" ><img src="/images/habitarehux.png" width="150px" alt="" /></Link>
                 </div>
                 {/* <!-- Logo  end-->  */}
                 {/* <!-- Header  title -->  */}
                 <div className="header-title">
-                    <h2><Link to="/test2" className="ajax">MENU</Link></h2>
+                    {/* <h2><Link to="/test2" className="ajax">MENU</Link></h2> */}
                 </div>
                 {/* <!-- Header  title  end--> */}
                 {/* <!-- share --> */}

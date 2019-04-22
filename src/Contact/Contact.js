@@ -174,8 +174,11 @@ class Contact extends Component{
   </div>
   {/*  fixed-column */}
   <div className="fixed-column">
-    <div className="map-box">
-      <div id="map-canvas" />
+    {/* <div className="map-box">
+      <div id="map-canvas"><iframe src="https://www.google.com/maps/embed?f=q&origin=mfe&pb=!1m4!2m1!1sAvenida+Revolucin+1336,+Guadalupe+Inn+CDMX!5e0!6i15"></iframe></div>
+    </div> */}
+    <div className="map-boxFRAME">
+      <div id="map-canvasFRAME"><iframe title="Habitare Inmobiliaria Oficinas" src="https://maps.google.com/maps?f=q&source=s_q&hl=en&q=Lluvia 259 Col. Jardines del Pedregal Del. Álvaro Obregón México, CDMX, CP 01900&aq=0&ie=UTF8&t=m&z=15&iwloc=A&output=embed"></iframe></div>
     </div>
   </div>
   {/*  fixed-column end*/}

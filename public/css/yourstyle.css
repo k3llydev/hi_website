@@ -59,3 +59,31 @@ Add your styles here
     margin-left: -150px;
     margin-top: -110px;
 }
+
+.li-like-a{
+    font-size:12px;
+	font-family:'FuturaPT-Light';
+	text-transform:uppercase;
+	position:relative;
+    z-index:20;
+}
+
+
+.map-boxFRAME {
+	float:left;
+	width:100% ;
+	height:100%;
+	position:relative;
+}
+#map-canvasFRAME {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100% ;
+	height:100%;
+}
+
+#map-canvasFRAME iframe{
+    width: 100%;
+    height: 100%;
+}
